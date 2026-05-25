@@ -1,0 +1,3 @@
+# One absolute project path per line.
+# scripts/sync-skills.sh --project adds projects here after a successful sync.
+/Users/a.cherenkov/Workspace/Personal/abc/validator
