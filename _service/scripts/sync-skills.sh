@@ -5,9 +5,9 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 usage() {
   cat <<'USAGE'
 Usage:
-  scripts/sync-skills.sh [--check] [--target codex[,claude][,agents]|all] [--project /absolute/path] [skill ...]
-  scripts/sync-skills.sh --remove [--target codex[,claude][,agents]|all] [--project /absolute/path] skill ...
-  scripts/sync-skills.sh --list
+  _service/scripts/sync-skills.sh [--check] [--target codex[,claude][,agents]|all] [--project /absolute/path] [skill ...]
+  _service/scripts/sync-skills.sh --remove [--target codex[,claude][,agents]|all] [--project /absolute/path] skill ...
+  _service/scripts/sync-skills.sh --list
 
 Synchronizes only skills defined in this repository:
   skills/<name>/skill-source.md
@@ -32,7 +32,7 @@ Backups are stored under:
   $SKILL_SYNC_BACKUP_DIR, or ~/.agent-skill-sync-backups when unset
 
 Project roots are remembered in:
-  $SKILL_SYNC_PROJECTS_FILE, or skill-installations/projects.txt when unset
+  $SKILL_SYNC_PROJECTS_FILE, or _service/skill-installations.txt when unset
 USAGE
 }
 
@@ -109,10 +109,10 @@ while [[ $# -gt 0 ]]; do
 done
 
 script_dir="${0:A:h}"
-repo_root="$(cd "$script_dir/.." && pwd)"
+repo_root="$(cd "$script_dir/../.." && pwd)"
 source_root="$repo_root/skills"
 backup_root="${SKILL_SYNC_BACKUP_DIR:-$HOME/.agent-skill-sync-backups}"
-projects_file="${SKILL_SYNC_PROJECTS_FILE:-$repo_root/skill-installations/projects.txt}"
+projects_file="${SKILL_SYNC_PROJECTS_FILE:-$repo_root/_service/skill-installations.txt}"
 timestamp="$(date +%Y%m%d_%H%M%S)"
 temp_root="$(mktemp -d "${TMPDIR:-/tmp}/sync-skills.XXXXXX")"
 

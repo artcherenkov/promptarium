@@ -5,7 +5,7 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 usage() {
   cat <<'USAGE'
 Usage:
-  scripts/sync-agent-prompts.sh [--check]
+  _service/scripts/sync-agent-prompts.sh [--check]
 
 Copies system-rules/agents-md.md into:
   ~/.codex/AGENTS.md
@@ -48,7 +48,7 @@ if [[ $# -gt 0 ]]; then
 fi
 
 script_dir="${0:A:h}"
-repo_root="$(cd "$script_dir/.." && pwd)"
+repo_root="$(cd "$script_dir/../.." && pwd)"
 source_file="$repo_root/system-rules/agents-md.md"
 backup_root="${AGENT_PROMPT_BACKUP_DIR:-$HOME/.agent-prompt-sync-backups}"
 timestamp="$(date +%Y%m%d_%H%M%S)"
